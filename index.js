@@ -81,7 +81,7 @@ const launchBrowser = () => puppeteer.launch({
 (async () => {
   const startTime = Date.now();
   let data = {};
-  const url = 'https://google.com';
+  const url = 'https://google.com/';
 
   let browser = await launchBrowser();
 
