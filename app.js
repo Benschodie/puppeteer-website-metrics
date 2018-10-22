@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const fs = require('fs');
+const perfmeter = require('./perfmeter');
 
 const readFileContents = (filename) => new Promise((res, rej) => {
   fs.readFile(filename, (err, data) => {
@@ -10,7 +11,9 @@ const readFileContents = (filename) => new Promise((res, rej) => {
 })
 
 
-app.get('/', async (_, res) => {
+app.get('/', async (req, res) => {
+  const { url = 'https://google.com' } = req.query;
+  await perfmeter(url);
   const data = await readFileContents('data.json');
   res.json(JSON.parse(data));
 });

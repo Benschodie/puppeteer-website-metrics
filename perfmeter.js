@@ -78,10 +78,9 @@ const launchBrowser = () => puppeteer.launch({
 });
 
 
-(async () => {
+module.exports = async function (url) {
   const startTime = Date.now();
   let data = {};
-  const url = 'https://google.com/';
 
   let browser = await launchBrowser();
 
@@ -108,4 +107,4 @@ const launchBrowser = () => puppeteer.launch({
   const endTime = Date.now();
   console.log(`It took ${(endTime - startTime) / 1000} seconds`);
 
-})();
+}
