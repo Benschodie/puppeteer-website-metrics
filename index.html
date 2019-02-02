@@ -8,5 +8,26 @@
   </head>
   <body>
     <div class="website"></div>
+    <script>
+      const el = document.querySelector('.website');
+      const template = ({ speedIndex }) => {
+        return `
+                <p>Speedindex: ${speedIndex}</p>
+            `;
+      };
+      const render = (data, el) => {
+        console.log(data);
+        const renderData = {
+          speedIndex: data.lighthouse.audits['speed-index'].displayValue
+        };
+        el.innerHTML = template(renderData);
+      };
+      fetch('/data')
+        .then(res => res.json())
+        // naming whatever i like
+        .then(peter => {
+          render(peter, el);
+        });
+    </script>
   </body>
 </html>
